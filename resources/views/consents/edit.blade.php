@@ -9,7 +9,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form method="POST" action="{{ route('companies.consents.update', [$company, $consent]) }}">
+            <form method="POST" action="{{ route('consents.update', $consent) }}">
                 @csrf
                 @method('PUT')
 

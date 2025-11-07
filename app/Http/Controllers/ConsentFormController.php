@@ -60,24 +60,26 @@ class ConsentFormController extends Controller
             ->with('success', 'Consentimento criado com sucesso.');
     }
 
-    public function edit(Company $company, ConsentForm $consent)
+    public function edit(ConsentForm $consent)
     {
-        // ensure the consent belongs to the company
-        if ($consent->company_id !== $company->id) abort(404);
+        $company = $consent->company;
+        if (! $company) abort(404);
         return view('consents.edit', compact('company', 'consent'));
     }
 
-    public function update(StoreConsentFormRequest $request, Company $company, ConsentForm $consent)
+    public function update(StoreConsentFormRequest $request, ConsentForm $consent)
     {
-        if ($consent->company_id !== $company->id) abort(404);
+        $company = $consent->company;
+        if (! $company) abort(404);
         $consent->update($request->validated());
         return redirect()->route('company.dashboard', $company->id)
             ->with('success', 'Consentimento atualizado com sucesso.');
     }
 
-    public function destroy(Company $company, ConsentForm $consent)
+    public function destroy(ConsentForm $consent)
     {
-        if ($consent->company_id !== $company->id) abort(404);
+        $company = $consent->company;
+        if (! $company) abort(404);
         $consent->delete();
         return redirect()->route('company.dashboard', $company->id)
             ->with('success', 'Consentimento removido com sucesso.');
