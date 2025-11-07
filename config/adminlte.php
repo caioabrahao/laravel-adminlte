@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Super DPO',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,12 +63,12 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => '<b>Super</b>DPO',
+    'logo_img' => 'images/logo-superdpo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'Admin Logo',
+    'logo_img_alt' => 'Super DPO Logo',
 
     /*
     |--------------------------------------------------------------------------
@@ -86,7 +86,7 @@ return [
     'auth_logo' => [
         'enabled' => false,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => 'images/logo-superdpo.png',
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 50,
@@ -175,7 +175,16 @@ return [
     'classes_auth_header' => '',
     'classes_auth_body' => '',
     'classes_auth_footer' => '',
-    'classes_auth_icon' => '',
+    'auth_logo' => [
+    'enabled' => true,
+    'img' => [
+        'path' => 'images/logo-superdpo.png',
+        'alt' => 'Auth Logo',
+        'class' => '',
+        'width' => 50,
+        'height' => 50,
+    ],
+],
     'classes_auth_btn' => 'btn-flat btn-primary',
 
     /*
@@ -311,6 +320,7 @@ return [
         ],
 
         // Sidebar items:
+        ['header' => 'Paineis'],
         [
             'text' => 'Painel do Admin',
             'url' => '/admin',
