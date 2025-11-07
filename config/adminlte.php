@@ -359,6 +359,11 @@ return [
             'url'  => 'companies',
             'icon' => 'fas fa-fw fa-building',
         ],
+        [
+            'text' => 'Termos de Consentimento',
+            'url' => 'consents',
+            'icon' => 'fas fa-fw fa-file-signature',
+        ],
     ],
 
     /*

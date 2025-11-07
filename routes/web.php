@@ -36,6 +36,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('companies.consents', ConsentFormController::class)->shallow()->only([
         'create','store','edit','update','destroy'
     ]);
+    // Global consent forms listing and viewing
+    Route::resource('consents', ConsentFormController::class)->only(['index','show']);
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

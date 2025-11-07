@@ -9,6 +9,24 @@ use Illuminate\Http\Request;
 
 class ConsentFormController extends Controller
 {
+    /**
+     * Display a listing of all consent forms across companies.
+     */
+    public function index()
+    {
+        $consents = ConsentForm::with('company')->latest()->paginate(15);
+        return view('consents.index', compact('consents'));
+    }
+
+    /**
+     * Display a specific consent form.
+     */
+    public function show(ConsentForm $consent)
+    {
+        $consent->load('company');
+        return view('consents.show', compact('consent'));
+    }
+
     public function create(Company $company)
     {
         return view('consents.create', compact('company'));
