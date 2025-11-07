@@ -11,7 +11,7 @@ Auth::routes();
 
 //Admin routes
 Route::middleware(['auth', 'is_admin'])->group(function () {
-    Route::get('/admin', [DashboardController::class, 'admin'])->name('admin.dashboard');
+    Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
 });
 
 
