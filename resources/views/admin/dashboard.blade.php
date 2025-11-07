@@ -1,11 +1,11 @@
 @extends('adminlte::page')
 
-@section('title', 'Admin Dashboard')
+@section('title', 'Painel do Admin')
 
 @section('content_header')
     <div class="d-flex justify-content-between align-items-center">
-        <h1 class="m-0">Admin Dashboard</h1>
-        <a href="{{ route('home') }}" class="btn btn-sm btn-secondary">Back to site</a>
+    <h1 class="m-0">Painel do Admin</h1>
+    <a href="{{ route('home') }}" class="btn btn-sm btn-secondary">Voltar ao site</a>
     </div>
 @stop
 
@@ -33,10 +33,10 @@
         <div class="small-box bg-info">
             <div class="inner">
                 <h3>{{ $stats['users'] }}</h3>
-                <p>Users</p>
+                <p>Usuários</p>
             </div>
             <div class="icon"><i class="fas fa-users"></i></div>
-            <a href="#" class="small-box-footer">Manage users <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="#" class="small-box-footer">Gerenciar usuários <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
 
@@ -44,10 +44,10 @@
         <div class="small-box bg-success">
             <div class="inner">
                 <h3>{{ $stats['companies'] }}</h3>
-                <p>Companies</p>
+                <p>Empresas</p>
             </div>
             <div class="icon"><i class="fas fa-building"></i></div>
-            <a href="{{ route('companies.index') }}" class="small-box-footer">Manage companies <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ route('companies.index') }}" class="small-box-footer">Gerenciar empresas <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
 
@@ -55,10 +55,10 @@
         <div class="small-box bg-warning">
             <div class="inner">
                 <h3>{{ $stats['active'] }}</h3>
-                <p>Active users</p>
+                <p>Usuários ativos</p>
             </div>
             <div class="icon"><i class="fas fa-user-check"></i></div>
-            <a href="#" class="small-box-footer">View active <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="#" class="small-box-footer">Ver ativos <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
 
@@ -66,10 +66,10 @@
         <div class="small-box bg-danger">
             <div class="inner">
                 <h3>{{ $stats['reports'] }}</h3>
-                <p>Reports</p>
+                <p>Relatórios</p>
             </div>
             <div class="icon"><i class="fas fa-file-alt"></i></div>
-            <a href="#" class="small-box-footer">View reports <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="#" class="small-box-footer">Ver relatórios <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
 </div>
@@ -78,9 +78,9 @@
     <div class="col-lg-8">
         <div class="card">
             <div class="card-header border-0">
-                <h3 class="card-title">Recent companies</h3>
+                <h3 class="card-title">Empresas recentes</h3>
                 <div class="card-tools">
-                    <a href="{{ route('companies.index') }}" class="btn btn-tool">See all</a>
+                    <a href="{{ route('companies.index') }}" class="btn btn-tool">Ver todos</a>
                 </div>
             </div>
             <div class="card-body table-responsive p-0">
@@ -88,9 +88,9 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
+                            <th>Nome</th>
                             <th>CNPJ</th>
-                            <th>Created</th>
+                            <th>Criado</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -110,8 +110,8 @@
 
     <div class="col-lg-4">
         <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Recent users</h3>
+                <div class="card-header">
+                <h3 class="card-title">Usuários recentes</h3>
             </div>
             <div class="card-body">
                 <ul class="list-group">
@@ -129,11 +129,11 @@
         </div>
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Quick actions</h3>
+                <h3 class="card-title">Ações rápidas</h3>
             </div>
             <div class="card-body">
-                <a href="#" class="btn btn-primary btn-block mb-2">Create company</a>
-                <a href="#" class="btn btn-outline-secondary btn-block">Export users</a>
+                <a href="#" class="btn btn-primary btn-block mb-2">Criar empresa</a>
+                <a href="#" class="btn btn-outline-secondary btn-block">Exportar usuários</a>
             </div>
         </div>
     </div>

@@ -3,7 +3,7 @@
 @section('title', "Super DPO - {$company->name}")
 
 @section('content_header')
-    <h1>{{ $company->name }} Dashboard</h1>
+    <h1>{{ $company->name }} - Painel da Empresa</h1>
 @stop
 
 @section('content')
@@ -11,8 +11,8 @@
     <div class="col-md-4">
         <div class="card bg-light">
             <div class="card-body">
-                <h4>Company Info</h4>
-                <p><strong>Sector:</strong> {{ $company->sector }}</p>
+                <h4>Informações da Empresa</h4>
+                <p><strong>Setor:</strong> {{ $company->sector }}</p>
                 <p><strong>Email:</strong> {{ $company->email }}</p>
                 <p><strong>CNPJ:</strong> {{ $company->cnpj }}</p>
             </div>
@@ -20,7 +20,7 @@
     </div>
     <div class="col-md-8">
         <div class="card">
-            <div class="card-header">Activity Chart</div>
+            <div class="card-header">Gráfico de Atividade</div>
             <div class="card-body">
                 <canvas id="companyChart"></canvas>
             </div>
@@ -36,9 +36,9 @@ const ctx = document.getElementById('companyChart');
 new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['Documents', 'Users', 'Tasks', 'Reports'],
+        labels: ['Documentos', 'Usuários', 'Tarefas', 'Relatórios'],
         datasets: [{
-            label: 'Activity',
+            label: 'Atividade',
             data: [12, 19, 7, 5], // you can replace this with dynamic data later
         }]
     },
