@@ -14,4 +14,14 @@ WORKDIR /var/www/html
 # Copy existing application directory contents
 COPY . .
 
+# Nodejs
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
+    && apt-get install -y nodejs
+
+# Fix Laravel storage permissions
+RUN mkdir -p /var/www/html/storage /var/www/html/bootstrap/cache \
+    && chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
+    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+
+
 RUN chown -R www-data:www-data /var/www/html
