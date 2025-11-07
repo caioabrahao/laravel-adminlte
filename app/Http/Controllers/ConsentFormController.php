@@ -15,7 +15,8 @@ class ConsentFormController extends Controller
     public function index()
     {
         $consents = ConsentForm::with('company')->latest()->paginate(15);
-        return view('consents.index', compact('consents'));
+        $companies = Company::orderBy('name')->get(['id','name']);
+        return view('consents.index', compact('consents','companies'));
     }
 
     /**
@@ -25,6 +26,23 @@ class ConsentFormController extends Controller
     {
         $consent->load('company');
         return view('consents.show', compact('consent'));
+    }
+
+    /**
+     * Store a consent form from the global index (company_id in request).
+     */
+    public function storeGlobal(Request $request)
+    {
+        $data = $request->validate([
+            'company_id' => ['required','exists:companies,id'],
+            'title' => ['required','string','max:255'],
+            'content' => ['nullable','string'],
+            'effective_date' => ['nullable','date'],
+        ]);
+
+        ConsentForm::create($data);
+
+        return redirect()->route('consents.index')->with('success', 'Consentimento criado com sucesso.');
     }
 
     public function create(Company $company)

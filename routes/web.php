@@ -36,8 +36,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('companies.consents', ConsentFormController::class)->shallow()->only([
         'create','store','edit','update','destroy'
     ]);
-    // Global consent forms listing and viewing
+    // Global consent forms listing, viewing and create-from-index
     Route::resource('consents', ConsentFormController::class)->only(['index','show']);
+    // store from the global page (company selected in form)
+    Route::post('consents', [ConsentFormController::class, 'storeGlobal'])->name('consents.store');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
