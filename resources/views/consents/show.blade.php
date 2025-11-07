@@ -17,7 +17,7 @@
         </div>
         <div class="card-footer">
             <a href="{{ route('consents.index') }}" class="btn btn-secondary">Voltar</a>
-            <a href="{{ route('companies.consents.edit', [$consent->company_id, $consent]) }}" class="btn btn-warning">Editar</a>
+            <a href="{{ route('consents.edit', $consent) }}" class="btn btn-warning">Editar</a>
         </div>
     </div>
 @stop

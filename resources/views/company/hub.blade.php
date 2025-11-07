@@ -73,8 +73,8 @@
                                             <td>{{ $consent->title }}</td>
                                             <td>{{ optional($consent->effective_date)->format('Y-m-d') }}</td>
                                             <td>
-                                                <a href="{{ route('companies.consents.edit', [$company, $consent]) }}" class="btn btn-sm btn-warning">Editar</a>
-                                                <form action="{{ route('companies.consents.destroy', [$company, $consent]) }}" method="POST" style="display:inline;">
+                                                <a href="{{ route('consents.edit', $consent) }}" class="btn btn-sm btn-warning">Editar</a>
+                                                <form action="{{ route('consents.destroy', $consent) }}" method="POST" style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="btn btn-sm btn-danger" onclick="return confirm('Remover este consentimento?')">Remover</button>
