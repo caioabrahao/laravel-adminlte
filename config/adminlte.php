@@ -152,7 +152,7 @@ return [
     |
     */
 
-    'layout_topnav' => 'null',
+    'layout_topnav' => null,
     'layout_boxed' => null,
     'layout_fixed_sidebar' => null,
     'layout_fixed_navbar' => null,
