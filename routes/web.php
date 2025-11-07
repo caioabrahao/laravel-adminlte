@@ -3,14 +3,28 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/admin', [DashboardController::class, 'index']); # test purposes (delete later)
 
 Auth::routes();
 
+//Admin routes
+Route::middleware(['auth', 'is_admin'])->group(function () {
+    Route::get('/admin', [DashboardController::class, 'admin'])->name('admin.dashboard');
+});
+
+
+//Protected to normal users
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('companies', CompanyController::class);
+
+    Route::get('user/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::post('user/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+    Route::get('user/password', [ProfileController::class, 'password'])->name('profile.password');
+    Route::post('user/password', [ProfileController::class, 'updatePassword'])->name('profile.password.update');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
