@@ -16,7 +16,7 @@ services:
 
   web:
     image: nginx:alpine
-    user: "${UID:-1000}:${GID:-1000}"
+    #user: "${UID:-1000}:${GID:-1000}"
     container_name: laravel_web
     ports:
       - "8080:80"
@@ -30,7 +30,7 @@ services:
 
   db:
     image: mysql:8.0
-    user: "${UID:-1000}:${GID:-1000}"
+    #user: "${UID:-1000}:${GID:-1000}"
     container_name: laravel_db
     restart: always
     environment:
