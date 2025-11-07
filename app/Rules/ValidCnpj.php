@@ -2,23 +2,17 @@
 
 namespace App\Rules;
 
-use Closure;
-use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Contracts\Validation\Rule;
 
-class ValidCnpj implements ValidationRule
+class ValidCnpj implements Rule
 {
     /**
-     * Run the validation rule.
-     *
-     * @param  \Closure(string, ?string=): \Illuminate\Translation\PotentiallyTranslatedString  $fail
+     * Determine if the validation rule passes.
      */
-    public function validate(string $attribute, mixed $value, Closure $fail): void
-    {
-        //
-    }
-
     public function passes($attribute, $value)
     {
+        if (is_null($value)) return false;
+
         $cnpj = preg_replace('/\D/', '', $value);
 
         if (strlen($cnpj) != 14) return false;
@@ -29,16 +23,19 @@ class ValidCnpj implements ValidationRule
 
         for ($t = 12; $t < 14; $t++) {
             $sum = 0;
-            for ($i = 0; $i < $t; $i++)
-                $sum += $cnpj[$i] * ($t == 12 ? $weights1[$i] : $weights2[$i]);
+            for ($i = 0; $i < $t; $i++) {
+                $sum += (int) $cnpj[$i] * ($t == 12 ? $weights1[$i] : $weights2[$i]);
+            }
             $digit = ($sum % 11) < 2 ? 0 : 11 - ($sum % 11);
-            if ($cnpj[$t] != $digit) return false;
+            if ((int) $cnpj[$t] !== $digit) return false;
         }
 
         return true;
     }
 
-
+    /**
+     * Get the validation error message.
+     */
     public function message()
     {
         return 'O CNPJ informado é inválido.';

@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\ValidCnpj;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreCompanyRequest extends FormRequest
 {
@@ -21,9 +23,15 @@ class StoreCompanyRequest extends FormRequest
      */
     public function rules(): array
     {
+        // for update requests, ignore the current company id in unique rule
+        $uniqueCnpj = Rule::unique('companies', 'cnpj');
+        if ($this->route('company') instanceof \App\Models\Company) {
+            $uniqueCnpj->ignore($this->route('company')->id);
+        }
+
         return [
             'name' => 'required|string|max:255',
-            'cnpj' => 'required|string|max:18|unique:companies,cnpj',
+            'cnpj' => ['required', 'string', 'max:18', $uniqueCnpj, new ValidCnpj()],
             'responsible_name' => 'nullable|string|max:255',
             'email' => 'nullable|email|max:255',
             'phone' => 'nullable|string|max:20',
