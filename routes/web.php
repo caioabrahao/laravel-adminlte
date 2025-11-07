@@ -10,3 +10,7 @@ Route::get('/', function () {
 
 Route::get('/admin', [DashboardController::class, 'index']);
 Route::resource('companies', CompanyController::class);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
