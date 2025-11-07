@@ -111,7 +111,7 @@ return [
 
     'preloader' => [
         'enabled' => true,
-        'mode' => 'fullscreen',
+        'mode' => 'cwrapper',
         'img' => [
             'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
             'alt' => 'AdminLTE Preloader Image',
@@ -391,6 +391,12 @@ return [
             'text' => 'information',
             'icon_color' => 'cyan',
             'url' => '#',
+        ],
+        ['header' => 'Companies'],
+        [
+            'text' => 'Companies',
+            'url'  => 'companies',
+            'icon' => 'fas fa-fw fa-building',
         ],
     ],
 
