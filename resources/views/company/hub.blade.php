@@ -12,7 +12,6 @@
         <div class="card bg-light">
             <div class="card-body">
                 <h4>Informações da Empresa</h4>
-                <p><strong>Setor:</strong> {{ $company->sector }}</p>
                 <p><strong>Email:</strong> {{ $company->email }}</p>
                 <p><strong>CNPJ:</strong> {{ $company->cnpj }}</p>
             </div>
