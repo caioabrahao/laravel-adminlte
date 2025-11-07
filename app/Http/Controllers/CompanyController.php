@@ -67,4 +67,13 @@ class CompanyController extends Controller
         $company->delete();
         return redirect()->route('companies.index')->with('success', 'Company deleted successfully.');
     }
+
+    public function select($id)
+{
+    $company = Company::findOrFail($id);
+
+    session(['current_company' => $company->id]);
+
+    return redirect()->route('company.dashboard', $company->id);
+}
 }

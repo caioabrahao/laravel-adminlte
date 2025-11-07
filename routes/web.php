@@ -5,6 +5,9 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProfileController;
 
+use App\Http\Controllers\CompanyHubController;
+
+
 Route::get('/admin', [DashboardController::class, 'index']); # test purposes (delete later)
 
 Auth::routes();
@@ -25,6 +28,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('user/password', [ProfileController::class, 'password'])->name('profile.password');
     Route::post('user/password', [ProfileController::class, 'updatePassword'])->name('profile.password.update');
+
+     Route::get('/companies/select/{id}', [CompanyController::class, 'select'])->name('companies.select');
+    Route::get('/company/{id}/dashboard', [CompanyHubController::class, 'dashboard'])->name('company.dashboard');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

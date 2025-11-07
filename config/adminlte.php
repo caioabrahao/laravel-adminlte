@@ -152,7 +152,7 @@ return [
     |
     */
 
-    'layout_topnav' => null,
+    'layout_topnav' => 'null',
     'layout_boxed' => null,
     'layout_fixed_sidebar' => null,
     'layout_fixed_navbar' => null,
@@ -320,6 +320,16 @@ return [
         ],
 
         // Sidebar items:
+        ['header' => 'Selecione sua Empresa'],
+        [
+            'text' => 'Empresas',
+            'url'  => 'companies',
+            'icon' => 'fas fa-fw fa-building',
+            'submenu' => [
+                // lista dinamica em app service
+            ],
+        ],
+        
         ['header' => 'Paineis'],
         [
             'text' => 'Painel do Admin',
