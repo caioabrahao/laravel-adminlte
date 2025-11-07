@@ -9,7 +9,7 @@ class CompanyHubController extends Controller
 {
      public function dashboard($id)
     {
-        $company = Company::findOrFail($id);
+        $company = Company::with('consentForms')->findOrFail($id);
 
         return view('company.hub', compact('company'));
     }

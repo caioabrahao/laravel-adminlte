@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ConsentFormController;
 use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\CompanyHubController;
@@ -31,6 +32,10 @@ Route::middleware(['auth'])->group(function () {
 
      Route::get('/companies/select/{id}', [CompanyController::class, 'select'])->name('companies.select');
     Route::get('/company/{id}/dashboard', [CompanyHubController::class, 'dashboard'])->name('company.dashboard');
+    // Consent forms nested resource for companies
+    Route::resource('companies.consents', ConsentFormController::class)->shallow()->only([
+        'create','store','edit','update','destroy'
+    ]);
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

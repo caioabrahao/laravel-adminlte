@@ -24,6 +24,71 @@
                 <canvas id="companyChart"></canvas>
             </div>
         </div>
+        <div class="card">
+            <div class="card-header p-0">
+                <ul class="nav nav-tabs" id="companyTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="overview-tab" data-toggle="tab" href="#overview" role="tab">Visão Geral</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="consents-tab" data-toggle="tab" href="#consents" role="tab">Termos de Consentimento</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body tab-content">
+                <div class="tab-pane fade show active" id="overview" role="tabpanel">
+                    <div class="card">
+                        <div class="card-header">Gráfico de Atividade</div>
+                        <div class="card-body">
+                            <canvas id="companyChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="consents" role="tabpanel">
+                    <div class="d-flex justify-content-between mb-3">
+                        <h5>Termos de Consentimento</h5>
+                        <a href="{{ route('companies.consents.create', $company) }}" class="btn btn-sm btn-primary">Adicionar Consentimento</a>
+                    </div>
+
+                    @if(session('success'))
+                        <div class="alert alert-success">{{ session('success') }}</div>
+                    @endif
+
+                    @if($company->consentForms->isEmpty())
+                        <div class="alert alert-info">Nenhum termo de consentimento cadastrado.</div>
+                    @else
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Título</th>
+                                        <th>Vigência</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($company->consentForms as $consent)
+                                        <tr>
+                                            <td>{{ $consent->title }}</td>
+                                            <td>{{ optional($consent->effective_date)->format('Y-m-d') }}</td>
+                                            <td>
+                                                <a href="{{ route('companies.consents.edit', [$company, $consent]) }}" class="btn btn-sm btn-warning">Editar</a>
+                                                <form action="{{ route('companies.consents.destroy', [$company, $consent]) }}" method="POST" style="display:inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-sm btn-danger" onclick="return confirm('Remover este consentimento?')">Remover</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @stop

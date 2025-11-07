@@ -17,4 +17,9 @@ class Company extends Model
         'phone',
         'address',
     ];
+
+    public function consentForms()
+    {
+        return $this->hasMany(ConsentForm::class);
+    }
 }
